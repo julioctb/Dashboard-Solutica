@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-       '/':() =>  DashboardLayout(child: ,),
+       '/' : (_) =>  DashboardLayout(),
 
       },
       debugShowCheckedModeBanner: false,
