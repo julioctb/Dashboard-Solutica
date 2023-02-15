@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:solutica/ui/shared/sidebar.dart';
+
+
 
 class DashboardLayout extends StatelessWidget {
  const DashboardLayout({super.key, });
@@ -10,16 +13,11 @@ class DashboardLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
      backgroundColor: const Color(0xffEDF1F2),
-      body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Dashboard'),
-              
-            ],
-          ),
-
-      )
+      body: Row(
+        children: [
+         SideBar() ,
+        ],
+        )
       );
         
       
