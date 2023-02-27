@@ -9,7 +9,7 @@ class Logo extends StatelessWidget {
     Color color = Colors.white54;
 
     return  Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 20),
       child:  Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

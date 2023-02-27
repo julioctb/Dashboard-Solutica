@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:solutica/ui/shared/widgets/logo.dart';
-import 'package:solutica/ui/shared/widgets/text_separator.dart';
-
+import 'widgets/widgets.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({super.key});
@@ -14,11 +12,17 @@ class SideBar extends StatelessWidget {
       height: double.infinity,
       decoration: _buildBoxDecoration(),
       child: ListView(
-        children: [
-          Logo(),
-          SizedBox( height: 50),
-         
-          TextSeparator( text: 'Principal'),
+        physics:const ClampingScrollPhysics(),
+        children:  [
+         const Logo(),
+         const SizedBox( height: 40),
+         const TextSeparator( text: 'Principal'),
+          MenuItem(
+            text: 'Dashboard',
+            icon: Icons.compass_calibration_outlined,
+            isActive: false,
+            onPressed: (){},
+          ),
         ],
       ) ,
     );

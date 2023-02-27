@@ -11,9 +11,9 @@ class DashboardLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     backgroundColor: const Color(0xffEDF1F2),
-      body: Row(
+    return const Scaffold(
+     backgroundColor:  Color(0xffEDF1F2),
+      body:  Row(
         children: [
          SideBar() ,
         ],

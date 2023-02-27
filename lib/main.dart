@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
       },
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
+      title: 'Panel de control - Solutica',
       
     );
   }
