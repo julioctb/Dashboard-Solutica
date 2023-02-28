@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:solutica/router/router.dart';
 import 'layout/dashboard/dashboard_layout.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  Flurorouter.configureRoutes();
+  runApp(const MyApp());
+
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,13 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-       '/' : (_) => const DashboardLayout(),
-
-      },
-      debugShowCheckedModeBanner: false,
       title: 'Panel de control - Solutica',
+      debugShowCheckedModeBanner: false,
+      initialRoute: Flurorouter.initialRoute,
+      onGenerateRoute: Flurorouter.router.generator,
+      builder: ( context , child){
+       return DashboardLayout(child: child!);
+      },
+
       
     );
   }
