@@ -16,14 +16,14 @@ class TextSeparator extends StatelessWidget {
         children: [
         
         TextDivider(text: text),
-         Expanded(
-           child: Divider(
-              height: 5,
-              indent: 5,
+        //  Expanded(
+        //    child: Divider(
+        //       height: 5,
+        //       indent: 5,
               
-              color: Colors.white.withOpacity(0.4)
-            ),
-         ),
+        //       color: Colors.white.withOpacity(0.4)
+        //     ),
+        //  ),
 
         
         

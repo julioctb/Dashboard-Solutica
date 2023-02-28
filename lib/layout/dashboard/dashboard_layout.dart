@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:solutica/ui/shared/navbar.dart';
 import 'package:solutica/ui/shared/sidebar.dart';
 
 
@@ -16,6 +18,19 @@ class DashboardLayout extends StatelessWidget {
       body:  Row(
         children: [
          SideBar() ,
+        Expanded(
+          child:Column(
+            children: [
+              //barra de navegacion
+              Navbar()
+
+              //vista del contenido
+              //Expanded(child: child)
+            ],
+          )
+          )
+
+
         ],
         )
       );
