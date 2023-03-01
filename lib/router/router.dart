@@ -12,8 +12,8 @@ class Flurorouter {
 
   // configuracion de rutas
    static void configureRoutes(){
-    router.define(initialRoute, handler: AdminHandlers.dashboard);
-    router.define(dashboardRoute, handler: AdminHandlers.dashboard);
+    router.define(initialRoute, handler: AdminHandlers.dashboard, transitionType: TransitionType.none);
+    router.define(dashboardRoute, handler: AdminHandlers.dashboard,transitionType: TransitionType.none);
 
     // pagina no encontrada
     router.notFoundHandler = NotFoundHandler.notFoundPage;

@@ -8,7 +8,7 @@ class NoPageFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Center(
-      child: Text('la pagina solicitada no existe o no tienes permiso para verla',
+      child: Text('La pagina solicitada no existe o no tienes permiso para visualizarla',
       style: GoogleFonts.roboto(
         fontSize: 16
       ),

@@ -29,7 +29,10 @@ class DashboardLayout extends StatelessWidget {
               child: Column(
                 children: [
                 const Navbar(),
-                Expanded(child: child)
+                Expanded(child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: child,
+                  ))
 
               
               ]),

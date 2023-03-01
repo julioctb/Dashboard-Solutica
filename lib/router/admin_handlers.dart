@@ -5,7 +5,7 @@ class AdminHandlers {
 
   static Handler dashboard = Handler(
     handlerFunc: (context, params) {
-      return DashboardView();
+      return const DashboardView();
     }
     );
 

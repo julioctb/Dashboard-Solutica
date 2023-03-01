@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solutica/ui/labels/custom_labels.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -6,9 +7,9 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       children: [
-        Text('Dashboard View')
+        Text('Dashboard', style: CustomLabels.h1,)
       ],
     );
   }

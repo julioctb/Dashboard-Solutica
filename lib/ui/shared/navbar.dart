@@ -17,7 +17,7 @@ class Navbar extends StatelessWidget {
       child: Row(
         children: [
           if( size.width < 700)
-          IconButton(icon: Icon(Icons.menu_outlined), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.menu_outlined), onPressed: () {}),
 
           const SizedBox(width: 10),
 
