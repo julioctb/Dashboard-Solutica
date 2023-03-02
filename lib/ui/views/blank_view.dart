@@ -11,11 +11,11 @@ class DashboardView extends StatelessWidget {
     return ListView(
       physics: const ClampingScrollPhysics(),
       children: [
-        Text('Dashboard', style: CustomLabels.h1,),
+        Text('Blank View', style: CustomLabels.h1,),
         const SizedBox(height: 10),
         const WhiteCard(
-          title: 'Resumen',
-          child: Text('Hola Mundo')
+          title: 'Título',
+          child: Text('Pagina Blanca')
         )
       ],
     );
