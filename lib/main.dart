@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:solutica/providers/sidemenu_providers.dart';
 
 import 'services/navigation_service.dart';
 import 'package:solutica/router/router.dart';
@@ -6,8 +9,24 @@ import 'layout/dashboard/dashboard_layout.dart';
 
 void main() {
   Flurorouter.configureRoutes();
-  runApp(const MyApp());
+  runApp(const AppState());
 
+}
+
+class AppState extends StatelessWidget {
+  const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  MultiProvider(
+      providers:  [
+          ChangeNotifierProvider(
+            lazy: false,
+            create: (_) => SideMenuProvider(),
+          )],
+          child: const MyApp(),
+      );
+  }
 }
 
 class MyApp extends StatelessWidget {
