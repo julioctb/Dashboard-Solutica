@@ -5,7 +5,9 @@ import 'package:solutica/providers/sidemenu_providers.dart';
 
 import 'services/navigation_service.dart';
 import 'package:solutica/router/router.dart';
-import 'layout/dashboard/dashboard_layout.dart';
+
+import 'package:solutica/layout/auth/login_layout.dart';
+
 
 void main() {
   Flurorouter.configureRoutes();
@@ -38,10 +40,13 @@ class MyApp extends StatelessWidget {
       title: 'Panel de control - Solutica',
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigationService.navigatorKey,
-      initialRoute: Flurorouter.initialRoute,
+      initialRoute: Flurorouter.loginRoute,
       onGenerateRoute: Flurorouter.router.generator,
-      builder: ( context , child){
-       return DashboardLayout(child: child!);
+      builder: ( _ , child){
+        return const LoginLayout();
+
+        //TODO: hacer el dashboard
+       //return DashboardLayout(child: child!);
       },
 
       

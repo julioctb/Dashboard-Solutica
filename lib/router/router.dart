@@ -6,13 +6,16 @@ class Flurorouter {
 
   static final FluroRouter router = FluroRouter();
 
+  //rutas de login
+  static String loginRoute      = '/auth/login';
+  static String registerRoute   = '/auth/register';
+  
   // rutas Dashboard
-  static String initialRoute   = '/';
   static String dashboardRoute = '/dashboard';
 
   // configuracion de rutas
    static void configureRoutes(){
-    router.define(initialRoute, handler: AdminHandlers.dashboard, transitionType: TransitionType.none);
+    router.define(loginRoute, handler: AdminHandlers.login, transitionType: TransitionType.none);
     router.define(dashboardRoute, handler: AdminHandlers.dashboard,transitionType: TransitionType.none);
 
     // pagina no encontrada
