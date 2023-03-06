@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Flurorouter.loginRoute,
       onGenerateRoute: Flurorouter.router.generator,
       builder: ( _ , child){
-        return const LoginLayout();
+        return  LoginLayout(child: child!);
 
         //TODO: hacer el dashboard
        //return DashboardLayout(child: child!);
