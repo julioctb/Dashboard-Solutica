@@ -9,23 +9,20 @@ class LoginLayout extends StatelessWidget {
       body: Container(
         color: const Color.fromRGBO(246, 250, 254, 1),
         
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-           Container(
-            height: 570,
-            width: 700,
-            color: Colors.blue,
-           ),
-           Container(
-            height: 570,
-            width: 700,
-            color: Colors.white,
-           ),
-          
-          ],
-                )),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal:45,vertical: 100),
+          child: Expanded(
+            child: Row(
+              children: [
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: Colors.blue,
+                )
+              ],
+            )
+            ),
+          )
       ),
     );
   }
