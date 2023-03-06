@@ -5,10 +5,27 @@ class LoginLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return  Scaffold(
+      body: Container(
+        color: const Color.fromRGBO(246, 250, 254, 1),
         
-        child: Text('pagina de autenticación'),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+           Container(
+            height: 570,
+            width: 700,
+            color: Colors.blue,
+           ),
+           Container(
+            height: 570,
+            width: 700,
+            color: Colors.white,
+           ),
+          
+          ],
+                )),
       ),
     );
   }
