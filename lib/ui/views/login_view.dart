@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:solutica/ui/labels/custom_labels.dart';
+
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -7,46 +11,75 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Center(
       child: Form(
-        child: Column(
-          children: [
-            TextFormField(
-              //validator
-              style: const TextStyle(color: Colors.black87),
-              decoration: _buildInputDecoration(
-                hint: 'ingresa tu correo',
-                label: 'correo electrónico',
-                icon: Icons.email_outlined),
-            ),
-            const SizedBox(height:20),
-            TextFormField(
-              //validator
-              style: const TextStyle(color: Colors.black87),
-              decoration: _buildInputDecoration(
-                hint: '********',
-                label: 'Password',
-                icon: Icons.lock_outline),
-            )
+        child: Column( 
+          crossAxisAlignment: CrossAxisAlignment.end,
+           children: [
+
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Email', style: CustomLabels.labelFormField),
+                  const SizedBox(height:5),
+                  Container(
+                    width: 300,
+                    color: const Color.fromARGB(255, 244, 247, 253),
+                    child: TextFormField(
+                      //validator
+                      style: const TextStyle(color: Colors.black87),
+                      decoration: _buildInputDecoration(
+                        //hint: 'ingresa tu correo',
+                        ),   
+                    ),
+                  ), ], ),
+                  ),
+            const SizedBox(height:30),
+
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Contraseña', style: CustomLabels.labelFormField),
+                  const SizedBox(height:5),
+                  Container(
+                    width: 300,
+                    color:  const Color.fromARGB(255, 244, 247, 253) ,
+                    child: TextFormField(
+                      //validator
+                      obscureText: true,
+                      style: const TextStyle(color: Colors.black87),
+                      decoration: _buildInputDecoration(
+                        //hint: '***********', 
+                        //icon: Icons.remove_red_eye_outlined 
+                        ))),
+                  const SizedBox(height:20)
+                ]) ),
+                TextButton(
+                  onPressed: () { },
+                  child: Text('¿Olvidaste tu contraseña?',
+                  style: GoogleFonts.montserrat(
+                    color: Colors.blue[87] )
+                  ),
+                )
+
           ],
         ),
       ),
     );
   }
 
-  InputDecoration _buildInputDecoration({
-    required String hint,
-    required String label,
-    required IconData icon,
-    }){
-
+  InputDecoration _buildInputDecoration({ String? hint, IconData? icon }){
       return InputDecoration( 
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black87)
-        ),
+          border:  OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blueGrey.shade50)
+          ),
+          suffixIcon: Icon(icon),
         hintText: hint,
-        labelText: label,
-        prefixIcon: Icon(icon),
-        
-      );
+        hintStyle: GoogleFonts.montserrat(
+          color: Colors.blueGrey.shade300,
+          fontSize: 14),
+        );
+      
 
     } 
 }

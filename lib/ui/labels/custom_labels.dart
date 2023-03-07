@@ -9,5 +9,9 @@ class CustomLabels {
     fontWeight: FontWeight.w400
   );
 
+  static TextStyle labelFormField = GoogleFonts.montserrat(
+    fontSize: 15,
+    fontWeight: FontWeight.bold
+  );
 
 }

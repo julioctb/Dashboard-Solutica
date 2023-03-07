@@ -73,12 +73,12 @@ class LoginLayout extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    
                     children: [
 
                     const SizedBox(height: 30),
-                    const Image(image: AssetImage('logo_solutica.png'),width: 160),
-                    const SizedBox(height: 30),
+                    const Image(image: AssetImage('logo_solutica.png'),width: 180),
+                    const SizedBox(height: 20),
                     RichText(
                         text: TextSpan(
                         text: '¡Hola! ',
@@ -91,9 +91,9 @@ class LoginLayout extends StatelessWidget {
                         ],
                      ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     Text('Por favor ingresa la siguiente información.',style: GoogleFonts.montserrat(fontWeight: FontWeight.w400),),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 40),
                     Expanded(child: child),
                 
                     ],
