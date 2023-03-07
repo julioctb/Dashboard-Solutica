@@ -52,7 +52,7 @@ class LoginView extends StatelessWidget {
                         //hint: '***********', 
                         //icon: Icons.remove_red_eye_outlined 
                         ))),
-                  const SizedBox(height:20)
+                  const SizedBox(height:10)
                 ]) ),
                 TextButton(
                   onPressed: () { },
@@ -60,7 +60,17 @@ class LoginView extends StatelessWidget {
                   style: GoogleFonts.montserrat(
                     color: Colors.blue[87] )
                   ),
-                )
+                ),
+                  const SizedBox(height:20),
+                  SizedBox(
+                    width: 300,
+                    height: 40,
+                    child: FilledButton(
+                      style: FilledButton.styleFrom(backgroundColor: const Color.fromRGBO(32, 82, 192, 1)),
+                      onPressed: (){},
+                      child: const Text('Ingresar', style: TextStyle(fontSize: 15),)
+                      ),
+                  )
 
           ],
         ),
