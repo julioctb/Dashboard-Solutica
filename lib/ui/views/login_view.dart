@@ -8,6 +8,8 @@ import 'package:solutica/providers/login_form_provider.dart';
 
 import 'package:solutica/ui/labels/custom_labels.dart';
 
+import '../shared/widgets/custom_sizedbox_inputtext.dart';
+
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -26,7 +28,7 @@ class LoginView extends StatelessWidget {
             child: Column( 
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-      
+                
                 SizedBox(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,12 +39,12 @@ class LoginView extends StatelessWidget {
                         width: 300,
                         color: const Color.fromARGB(255, 244, 247, 253),
                         child: TextFormField(
-                          validator:(value) {
-
-                              if (value!.isEmpty) return 'el campo no puede estar vacio';
-                              if (EmailValidator.validate(value!)) return 'el correo no es valido';
-
-                          },
+                          onChanged: (value) => loginFormProvider.email = value,
+                          // validator:(value) {
+                          //   if (value!.isEmpty) return 'el campo no debe de ir vacio';
+                          //   if (!EmailValidator.validate(value)) return 'el correo no es válido';
+                          //   return null;
+                          // },
                           style: const TextStyle(color: Colors.black87),
                           decoration: _buildInputDecoration(
                             //hint: 'ingresa tu correo',
@@ -61,10 +63,12 @@ class LoginView extends StatelessWidget {
                       Container(
                         width: 300,
                         color:  const Color.fromARGB(255, 244, 247, 253) ,
+
                         child: TextFormField(
+                          onChanged: (value) => loginFormProvider.password = value,
                           validator:(value) {
-                            if( value!.length > 6 ) return 'la contraseña es menor a 6';
-                            if( value.isEmpty ) return 'el campo no debe de ir vacio';
+                            if( value!.isEmpty ) return 'el campo no debe de ir vacio';
+                            if( value.length < 6 ) return 'la contraseña no debe ser menor a 6 caracteres';
                             return null;
                           },
                           obscureText: true,
@@ -77,7 +81,9 @@ class LoginView extends StatelessWidget {
                     ]) ),
                     TextButton(
                       //TODO: hacer el view de recuperacion
-                      onPressed: () { },
+                      onPressed: () { 
+
+                      },
                       child: Text('¿Olvidaste tu contraseña?',
                       style: GoogleFonts.montserrat(
                         color: Colors.blue[87] )
@@ -121,4 +127,13 @@ class LoginView extends StatelessWidget {
       
 
     } 
+}
+
+class _CustomSizedBox extends StatelessWidget {
+  const _CustomSizedBox({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solutica/layout/dashboard/dashboard_layout.dart';
 
 import 'package:solutica/providers/sidemenu_providers.dart';
 
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Flurorouter.loginRoute,
       onGenerateRoute: Flurorouter.router.generator,
       builder: ( _ , child){
-        return  DashboardLayout(child: child!);
+        return  LoginLayout(child: child!);
 
         //TODO: hacer el dashboard
        //return DashboardLayout(child: child!);
