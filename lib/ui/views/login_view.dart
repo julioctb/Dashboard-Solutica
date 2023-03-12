@@ -1,18 +1,21 @@
-import 'package:email_validator/email_validator.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:email_validator/email_validator.dart';
 
 import 'package:solutica/providers/login_form_provider.dart';
+import 'package:solutica/router/router.dart';
 
 import 'package:solutica/ui/labels/custom_labels.dart';
 
-import '../shared/widgets/custom_sizedbox_inputtext.dart';
-
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  final double width =300;
+  final Color colorContainer = const Color.fromARGB(255, 244, 247, 253);
+
+ const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +36,19 @@ class LoginView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
                       Text('Email', style: CustomLabels.labelFormField),
                       const SizedBox(height:5),
                       Container(
-                        width: 300,
-                        color: const Color.fromARGB(255, 244, 247, 253),
+                        width: width,
+                        color: colorContainer ,
                         child: TextFormField(
                           onChanged: (value) => loginFormProvider.email = value,
-                          // validator:(value) {
-                          //   if (value!.isEmpty) return 'el campo no debe de ir vacio';
-                          //   if (!EmailValidator.validate(value)) return 'el correo no es válido';
-                          //   return null;
-                          // },
+                          validator:(value) {
+                            if (value!.isEmpty) return 'el campo no debe de ir vacio';
+                            if (!EmailValidator.validate(value)) return 'el correo no es válido';
+                            return null;
+                          },
                           style: const TextStyle(color: Colors.black87),
                           decoration: _buildInputDecoration(
                             //hint: 'ingresa tu correo',
@@ -61,8 +65,8 @@ class LoginView extends StatelessWidget {
                       Text('Contraseña', style: CustomLabels.labelFormField),
                       const SizedBox(height:5),
                       Container(
-                        width: 300,
-                        color:  const Color.fromARGB(255, 244, 247, 253) ,
+                        width: width,
+                        color:  colorContainer ,
 
                         child: TextFormField(
                           onChanged: (value) => loginFormProvider.password = value,
@@ -79,11 +83,10 @@ class LoginView extends StatelessWidget {
                             ))),
                       const SizedBox(height:10)
                     ]) ),
-                    TextButton(
-                      //TODO: hacer el view de recuperacion
-                      onPressed: () { 
 
-                      },
+                    TextButton(
+                      
+                      onPressed: () { Navigator.pushNamed( context , Flurorouter.recoverRoute);},
                       child: Text('¿Olvidaste tu contraseña?',
                       style: GoogleFonts.montserrat(
                         color: Colors.blue[87] )
@@ -91,7 +94,7 @@ class LoginView extends StatelessWidget {
                     ),
                       const SizedBox(height:30),
                       SizedBox(
-                        width: 300,
+                        width: width,
                         height: 40,
                         child: FilledButton(
                           style: FilledButton.styleFrom(backgroundColor: const Color.fromRGBO(32, 82, 192, 1)),
@@ -127,13 +130,4 @@ class LoginView extends StatelessWidget {
       
 
     } 
-}
-
-class _CustomSizedBox extends StatelessWidget {
-  const _CustomSizedBox({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
 }

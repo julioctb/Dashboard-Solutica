@@ -6,12 +6,19 @@ import 'package:solutica/router/router.dart';
 
 import 'package:solutica/ui/views/login_view.dart';
 import 'package:solutica/ui/views/dashboard_view.dart';
+import 'package:solutica/ui/views/recover_pass.dart';
 
 class AdminHandlers {
 
   static Handler login = Handler(
     handlerFunc: (context, params) => const LoginView()
     );
+
+  static Handler recover = Handler(
+    handlerFunc: (context, params) => const RecoverView()
+    );
+
+
 
   static Handler dashboard = Handler(
     handlerFunc: (context, params) {
