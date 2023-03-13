@@ -7,6 +7,7 @@ import 'package:email_validator/email_validator.dart';
 
 import 'package:solutica/providers/login_form_provider.dart';
 import 'package:solutica/router/router.dart';
+import 'package:solutica/services/navigation_service.dart';
 
 import 'package:solutica/ui/labels/custom_labels.dart';
 
@@ -86,7 +87,7 @@ class LoginView extends StatelessWidget {
 
                     TextButton(
                       
-                      onPressed: () { Navigator.pushNamed( context , Flurorouter.recoverRoute);},
+                      onPressed: () => NavigationService.navigateTo(Flurorouter.recoverRoute),
                       child: Text('¿Olvidaste tu contraseña?',
                       style: GoogleFonts.montserrat(
                         color: Colors.blue[87] )
