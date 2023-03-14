@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:solutica/providers/sidemenu_providers.dart';
-
+import 'providers/providers.dart';
 import 'services/navigation_service.dart';
 import 'package:solutica/router/router.dart';
 
@@ -22,10 +21,10 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MultiProvider(
       providers:  [
-          ChangeNotifierProvider(
-            lazy: false,
-            create: (_) => SideMenuProvider(),
-          )],
+          ChangeNotifierProvider( create: (_) => SideMenuProvider(),lazy: false),
+          ChangeNotifierProvider( create: (_) => AuthProvider(),lazy: false),
+            
+          ],
           child: const MyApp(),
       );
   }

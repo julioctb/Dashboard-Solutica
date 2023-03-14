@@ -4,8 +4,9 @@ import 'package:provider/provider.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:solutica/providers/providers.dart';
 
-import 'package:solutica/providers/login_form_provider.dart';
+
 import 'package:solutica/router/router.dart';
 import 'package:solutica/services/navigation_service.dart';
 
@@ -20,6 +21,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final authprovider = Provider.of<AuthProvider>(context);
 
     return  ChangeNotifierProvider(
       create: ( _ ) => LoginFormProvider(),
@@ -100,7 +103,11 @@ class LoginView extends StatelessWidget {
                         child: FilledButton(
                           style: FilledButton.styleFrom(backgroundColor: const Color.fromRGBO(32, 82, 192, 1)),
                           onPressed: (){
-                            loginFormProvider.validateForm();
+                            final isValid = loginFormProvider.validateForm();
+                            if(isValid){
+                              authprovider.login(loginFormProvider.email, loginFormProvider.password);
+                            }
+                            
                           },
                           child: const Text('Ingresar', style: TextStyle(fontSize: 15),)
                           ),
