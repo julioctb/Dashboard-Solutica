@@ -1,32 +1,33 @@
 import 'package:fluro/fluro.dart';
 import 'package:provider/provider.dart';
 
-import 'package:solutica/providers/sidemenu_providers.dart';
-import 'package:solutica/router/router.dart';
+import 'package:solutica/providers/auth_provider.dart';
+import 'package:solutica/ui/views/blank_view.dart';
 
 import 'package:solutica/ui/views/login_view.dart';
-import 'package:solutica/ui/views/dashboard_view.dart';
+
 import 'package:solutica/ui/views/recover_pass.dart';
 
 class AdminHandlers {
 
   static Handler login = Handler(
-    handlerFunc: (context, params) => const LoginView()
+    handlerFunc: (context, params) {
+
+      final authProvider = Provider.of<AuthProvider>(context!);
+
+      if ( authProvider.authStatus == AuthStatus.notauthenticated ) {
+        return const LoginView();
+      } else {
+        return const DashboardView();
+      }
+      
+    } 
     );
 
   static Handler recover = Handler(
     handlerFunc: (context, params) => const RecoverView()
     );
 
-
-
-  static Handler dashboard = Handler(
-    handlerFunc: (context, params) {
-
-      Provider.of<SideMenuProvider>(context! , listen: false).currentPageUrl(Flurorouter.dashboardRoute);
-      return const DashboardView();
-    }
-    );
 
   
 
