@@ -9,6 +9,9 @@ class LoginLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
     return  Scaffold(
       body: Container(
         color: const Color.fromARGB(255, 244, 247, 253),
@@ -18,87 +21,92 @@ class LoginLayout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             
             children: [
-              Container(
-                height: 600 ,
-                width: 520,
-                decoration: _buildBoxDecorationLeft(),
-                child: Center(
-                  child: Container(
-                    color: Colors.white12,
-                    height: 450,
-                    width: 400,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              text: 'Los logros de una organización son los',
-                            style: GoogleFonts.montserrat(
-                            height: 1.2,
-                            color: Colors.white,
-                            fontSize: 34,
-                            fontWeight: FontWeight.w500),
-                            children:[
-                              TextSpan(text: ' resultados ', style: TextStyle(color: Colors.red[700])),
-                              const TextSpan(text: 'del esfuerzo combinado de cada individuo.' ),
-
-                            ],
-                            ),
-                            ),
-                             
-                            
-                            const SizedBox(height: 20,),
-
-                            Text('-Vicente Lombardi.',
-                            style: GoogleFonts.montserrat(
+              if( size.width > 830 )
+              Flexible(
+                child: Container(
+                  height: 600 ,
+                  width: 520,
+                  decoration: _buildBoxDecorationLeft(),
+                  child: Center(
+                    child: Container(
+                      color: Colors.white12,
+                      height: 450,
+                      width: 400,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                text: 'Los logros de una organización son los',
+                              style: GoogleFonts.montserrat(
+                              height: 1.2,
                               color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal
-                            ),
-                            )
-                        ],
+                              fontSize: 34,
+                              fontWeight: FontWeight.w500),
+                              children:[
+                                TextSpan(text: ' resultados ', style: TextStyle(color: Colors.red[700])),
+                                const TextSpan(text: 'del esfuerzo combinado de cada individuo.' ),
+                                
+                              ],
+                              ),
+                              ),
+                               
+                              
+                              const SizedBox(height: 20,),
+                                
+                              Text('-Vicente Lombardi.',
+                              style: GoogleFonts.montserrat(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.normal
+                              ),
+                              )
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
               //View container
-              Container(
-                height: 600,
-                width: 520,
-                decoration: _buildBoxDecorationRight(),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: Column(
-                    
-                    children: [
-
-                    const SizedBox(height: 30),
-                    const Image(image: AssetImage('logo_solutica.png'),width: 180),
-                    const SizedBox(height: 20),
-                    RichText(
-                        text: TextSpan(
-                        text: '¡Hola! ',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800
-                        ),
-                        children:  <InlineSpan>[
-                          WidgetSpan(child: Image.asset('wave.png', height: 24 ,))
-                        ],
-                     ),
+              Flexible(
+                child: Container(
+                  height: 600,
+                  width: 520,
+                  decoration: _buildBoxDecorationRight(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: Column(
+                      
+                      children: [
+              
+                      const SizedBox(height: 30),
+                      const Image(image: AssetImage('logo_solutica.png'),width: 180),
+                      const SizedBox(height: 20),
+                      RichText(
+                          text: TextSpan(
+                          text: '¡Hola! ',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800
+                          ),
+                          children:  <InlineSpan>[
+                            WidgetSpan(child: Image.asset('wave.png', height: 24 ,))
+                          ],
+                       ),
+                      ),
+                      const SizedBox(height: 15),
+                      Text('Por favor ingresa la siguiente información.',style: GoogleFonts.montserrat(fontWeight: FontWeight.w400),),
+                      const SizedBox(height: 40),
+                      Expanded(child: child),
+                  
+                      ],
                     ),
-                    const SizedBox(height: 15),
-                    Text('Por favor ingresa la siguiente información.',style: GoogleFonts.montserrat(fontWeight: FontWeight.w400),),
-                    const SizedBox(height: 40),
-                    Expanded(child: child),
-                
-                    ],
-                  ),
-                )
+                  )
+                ),
               ),
             ],
           ),
