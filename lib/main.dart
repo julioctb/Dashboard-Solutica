@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solutica/layout/dashboard/dashboard_layout.dart';
-import 'package:solutica/services/local_storage.dart';
 
 import 'providers/providers.dart';
+import 'package:solutica/services/local_storage.dart';
+
+import 'package:solutica/api/cafe_api.dart';
+
 import 'services/navigation_service.dart';
 import 'package:solutica/router/router.dart';
 
 import 'package:solutica/layout/auth/login_layout.dart';
+import 'package:solutica/layout/dashboard/dashboard_layout.dart';
 
 
 void main() async {
   await LocalStorage.configurePrefs();
+  CafeApi.configureDio();
   Flurorouter.configureRoutes();
   runApp(const AppState());
 
