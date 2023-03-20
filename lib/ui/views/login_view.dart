@@ -102,10 +102,11 @@ class LoginView extends StatelessWidget {
                         height: 40,
                         child: FilledButton(
                           style: FilledButton.styleFrom(backgroundColor: const Color.fromRGBO(32, 82, 192, 1)),
-                          onPressed: (){
+                          onPressed: () {
                             final isValid = loginFormProvider.validateForm();
-                            if(isValid){
-                              authprovider.login(loginFormProvider.email, loginFormProvider.password);
+                            
+                            if(isValid ){
+                             authprovider.login(email: loginFormProvider.email, password: loginFormProvider.password);
                             }
                             
                           },

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' as prov;
+import 'package:solutica/services/auth_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 
 import 'providers/providers.dart';
-import 'package:solutica/services/local_storage.dart';
+import 'package:solutica/services/local_storage.dart' as storage;
 
 import 'package:solutica/api/cafe_api.dart';
 
@@ -14,7 +17,11 @@ import 'package:solutica/layout/dashboard/dashboard_layout.dart';
 
 
 void main() async {
-  await LocalStorage.configurePrefs();
+  WidgetsFlutterBinding.ensureInitialized();
+  await storage.LocalStorage.configurePrefs();
+
+  await AuthService.initializer();
+  
   CafeApi.configureDio();
   Flurorouter.configureRoutes();
   runApp(const AppState());
@@ -26,10 +33,10 @@ class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MultiProvider(
+    return  prov.MultiProvider(
       providers:  [
-          ChangeNotifierProvider( create: (_) => AuthProvider(),lazy: false),
-          ChangeNotifierProvider( create: (_) => SideMenuProvider(),lazy: false),
+          prov.ChangeNotifierProvider( create: (_) => AuthProvider(),lazy: false),
+          prov.ChangeNotifierProvider( create: (_) => SideMenuProvider(),lazy: false),
             
           ],
           child: const MyApp(),
@@ -50,13 +57,19 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: Flurorouter.router.generator,
       builder: ( _ , child){
 
-        final authProvider = Provider.of<AuthProvider>(context);
+        final authProvider = prov.Provider.of<AuthProvider>(context);
 
-        if ( authProvider.authStatus == AuthStatus.cheking){
+        
+        final Session? session = supabase.auth.currentSession;
+
+
+        if(session != null) return DashboardLayout(child: child!);
+
+        /* if ( authProvider.authStatus == AuthStatus.cheking){
           return const Center(
             child: CircularProgressIndicator(),
           );
-        }
+        } */
 
         if ( authProvider.authStatus == AuthStatus.notauthenticated ){
           return  LoginLayout(child: child!);

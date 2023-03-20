@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:solutica/router/router.dart';
-import 'package:solutica/services/local_storage.dart';
+import 'package:solutica/services/local_storage.dart' as storage;
 import 'package:solutica/services/navigation_service.dart';
+
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 enum AuthStatus{
   cheking,
@@ -11,33 +13,69 @@ enum AuthStatus{
   notauthenticated
 }
 
+final supabase = Supabase.instance.client;
+
 class AuthProvider extends ChangeNotifier{
 
   AuthStatus authStatus = AuthStatus.cheking;
 
   String? _token;
 
-  AuthProvider( ){
+   AuthProvider( ){
     isAuthenticated();
-  }
+  } 
 
 
-  login( String email, String password){
+  Future login({
+    required String email, 
+    required String password
+    }) async{
 
-    //TODO peticion http para recibir el token
-      _token = 'lkasdjflaskjdflksd';
+      final response = await supabase.auth.signInWithPassword(
+        email:email, 
+        password: password
+        );
       
-      // se guarda el token en el local storage
-      LocalStorage.prefs.setString('token',_token!);     
-      authStatus = AuthStatus.authenticated;
-      notifyListeners();
-      NavigationService.replaceTo(Flurorouter.dashboardRoute);
+        final Session? session = response.session;
+
+      
+        _token = session?.accessToken;
+        
+        // se guarda el token en el local storage
+        storage.LocalStorage.prefs.setString('token',_token!);     
+        authStatus = AuthStatus.authenticated;
+        notifyListeners();
+        NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      
+        print(_token);
 
   }
+
+
+
+    Future signUp({
+    required String email, 
+    required String password
+    }) async{
+
+      final response = await supabase.auth.signUp(email:email, password: password);
+      final User? user = supabase.auth.currentUser;
+     
+      
+      NavigationService.navigateTo(Flurorouter.dashboardRoute);      
+
+
+  }
+
+
+
+
+
+
 
   Future isAuthenticated()async {
     
-   final token = LocalStorage.prefs.getString('token');
+   final token = storage.LocalStorage.prefs.getString('token');
 
    if(token == null){
     authStatus = AuthStatus.notauthenticated;

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:solutica/providers/auth_provider.dart';
 
 import 'package:solutica/providers/sidemenu_providers.dart';
 import 'package:solutica/router/router.dart';
+import 'package:solutica/services/auth_service.dart';
 import 'package:solutica/services/navigation_service.dart';
 
 import 'widgets/widgets.dart';
@@ -20,6 +22,7 @@ class SideBar extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final sideMenuProvider = Provider.of<SideMenuProvider>(context);
+    
 
     return Container(
       width: 200,
@@ -51,6 +54,13 @@ class SideBar extends StatelessWidget {
           MenuItem(text: 'Nóminas', icon: Icons.request_quote_outlined, onPressed: (){}),
           MenuItem(text: 'Analítica', icon: Icons.show_chart_outlined, onPressed: (){}),
           MenuItem(text: 'Configuración', icon: Icons.corporate_fare_outlined, onPressed: (){}),
+          const SizedBox( height: 30),
+          const TextSeparator( text: 'Usuario'),
+          MenuItem(text: 'Cerrar sesión', 
+          icon: Icons.exit_to_app_outlined, 
+          onPressed: () {}
+            
+           ),
         ],
       ) ,
     );
