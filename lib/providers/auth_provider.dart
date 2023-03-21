@@ -54,7 +54,9 @@ class AuthProvider extends ChangeNotifier{
     required String password
     }) async{
 
+      // ignore: unused_local_variable
       final response = await supabase.auth.signUp(email:email, password: password);
+      // ignore: unused_local_variable
       final User? user = supabase.auth.currentUser;
      
       

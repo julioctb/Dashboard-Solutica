@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solutica/providers/auth_provider.dart';
 
 import 'package:solutica/providers/sidemenu_providers.dart';
 import 'package:solutica/router/router.dart';
-import 'package:solutica/services/auth_service.dart';
 import 'package:solutica/services/navigation_service.dart';
 
 import 'widgets/widgets.dart';
