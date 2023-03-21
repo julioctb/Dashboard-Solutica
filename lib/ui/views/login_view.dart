@@ -1,16 +1,20 @@
 
+import 'dart:js';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart'as prov;
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:solutica/providers/providers.dart';
+import 'package:solutica/providers/providers.dart' ;
 
 
 import 'package:solutica/router/router.dart';
 import 'package:solutica/services/navigation_service.dart';
 
 import 'package:solutica/ui/labels/custom_labels.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 
 class LoginView extends StatelessWidget {
@@ -22,13 +26,13 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final authprovider = Provider.of<AuthProvider>(context);
+    final authprovider = prov.Provider.of<AuthProvider>(context);
 
-    return  ChangeNotifierProvider(
+    return  prov.ChangeNotifierProvider(
       create: ( _ ) => LoginFormProvider(),
       child: Builder( builder: (context) {
 
-        final loginFormProvider = Provider.of<LoginFormProvider>(context, listen: false);
+        final loginFormProvider = prov.Provider.of<LoginFormProvider>(context, listen: false);
           return Center(
           child: Form(
             key: loginFormProvider.formKey,
@@ -105,8 +109,22 @@ class LoginView extends StatelessWidget {
                           onPressed: () {
                             final isValid = loginFormProvider.validateForm();
                             
+                            
                             if(isValid ){
-                             authprovider.login(email: loginFormProvider.email, password: loginFormProvider.password);
+                            authprovider.login(email: loginFormProvider.email, password: loginFormProvider.password)
+                            .catchError((_){
+                                const mensaje =  AuthException('Usuario o contraseña Inválido',statusCode: '400');
+                                Fluttertoast.showToast(
+                                  msg: mensaje.toString(),
+                                  toastLength: Toast.LENGTH_LONG,
+                                  timeInSecForIosWeb: 4,
+                                  webBgColor: 'linear-gradient(to right, #B00020, #B00020)',
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                  webPosition: 'right',
+                                  gravity: ToastGravity.TOP
+                                  );
+                            });
                             }
                             
                           },
@@ -124,6 +142,7 @@ class LoginView extends StatelessWidget {
      
     );
   }
+
 
   InputDecoration _buildInputDecoration({ String? hint, IconData? icon }){
       return InputDecoration( 

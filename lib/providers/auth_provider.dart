@@ -30,24 +30,20 @@ class AuthProvider extends ChangeNotifier{
     required String email, 
     required String password
     }) async{
-
+      
       final response = await supabase.auth.signInWithPassword(
-        email:email, 
-        password: password
-        );
-      
-        final Session? session = response.session;
+            email:email, 
+            password: password
+            );
+          
+      final Session? session = response.session;
 
-      
-        _token = session?.accessToken;
-        
-        // se guarda el token en el local storage
-        storage.LocalStorage.prefs.setString('token',_token!);     
-        authStatus = AuthStatus.authenticated;
-        notifyListeners();
-        NavigationService.replaceTo(Flurorouter.dashboardRoute);
-      
-        print(_token);
+       _token = session?.accessToken;
+       storage.LocalStorage.prefs.setString('token',_token!);     
+       authStatus = AuthStatus.authenticated;
+       notifyListeners();
+       NavigationService.replaceTo(Flurorouter.dashboardRoute);
+  
 
   }
 
@@ -73,7 +69,7 @@ class AuthProvider extends ChangeNotifier{
 
 
 
-  Future isAuthenticated()async {
+   isAuthenticated() {
     
    final token = storage.LocalStorage.prefs.getString('token');
 
@@ -84,7 +80,7 @@ class AuthProvider extends ChangeNotifier{
    }
       // hacer las reglas de validacion con el backend
     
-   await Future.delayed(const Duration(milliseconds: 100));
+   
     authStatus = AuthStatus.authenticated;
     notifyListeners();
     return true;
