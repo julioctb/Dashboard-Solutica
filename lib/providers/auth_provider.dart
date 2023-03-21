@@ -43,8 +43,6 @@ class AuthProvider extends ChangeNotifier{
        authStatus = AuthStatus.authenticated;
        notifyListeners();
        NavigationService.replaceTo(Flurorouter.dashboardRoute);
-  
-
   }
 
 

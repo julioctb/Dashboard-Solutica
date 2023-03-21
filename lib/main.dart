@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' as prov;
-import 'package:solutica/services/auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-
 import 'providers/providers.dart';
-import 'package:solutica/services/local_storage.dart' as storage;
 
-import 'package:solutica/api/cafe_api.dart';
-
-import 'services/navigation_service.dart';
 import 'package:solutica/router/router.dart';
 
 import 'package:solutica/layout/auth/login_layout.dart';
 import 'package:solutica/layout/dashboard/dashboard_layout.dart';
+
+import 'services/navigation_service.dart';
+import 'services/notification_service.dart';
+import 'package:solutica/services/auth_service.dart';
+import 'package:solutica/services/local_storage.dart' as storage;
 
 
 void main() async {
@@ -22,7 +21,6 @@ void main() async {
 
   await AuthService.initializer();
   
-  CafeApi.configureDio();
   Flurorouter.configureRoutes();
   runApp(const AppState());
 
@@ -52,6 +50,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Panel de control - Solutica',
       debugShowCheckedModeBanner: false,
+      scaffoldMessengerKey: NotificationService.notificationKey ,
       navigatorKey: NavigationService.navigatorKey,
       initialRoute: Flurorouter.rootRoute,
       onGenerateRoute: Flurorouter.router.generator,

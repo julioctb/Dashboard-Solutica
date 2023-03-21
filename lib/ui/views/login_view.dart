@@ -1,17 +1,13 @@
-
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart'as prov;
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:solutica/providers/providers.dart' ;
-
 
 import 'package:solutica/router/router.dart';
+import 'package:solutica/providers/providers.dart' ;
 import 'package:solutica/services/navigation_service.dart';
+import 'package:solutica/services/notification_service.dart';
 
 import 'package:solutica/ui/labels/custom_labels.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -113,17 +109,8 @@ class LoginView extends StatelessWidget {
                             if(isValid ){
                             authprovider.login(email: loginFormProvider.email, password: loginFormProvider.password)
                             .catchError((_){
-                                const mensaje =  AuthException('Usuario o contraseña Inválido',statusCode: '400');
-                                Fluttertoast.showToast(
-                                  msg: mensaje.toString(),
-                                  toastLength: Toast.LENGTH_LONG,
-                                  timeInSecForIosWeb: 4,
-                                  webBgColor: 'linear-gradient(to right, #B00020, #B00020)',
-                                  textColor: Colors.white,
-                                  fontSize: 16.0,
-                                  webPosition: 'right',
-                                  gravity: ToastGravity.TOP
-                                  );
+                                const message =  AuthException('Usuario o contraseña Inválido',statusCode: '400');
+                                NotificationService.showSnackbarError(message.toString());
                                   
                             });
                             }
