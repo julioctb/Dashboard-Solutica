@@ -59,10 +59,10 @@ class MyApp extends StatelessWidget {
         final authProvider = prov.Provider.of<AuthProvider>(context);
 
         
-        final Session? session = supabase.auth.currentSession;
+       
 
 
-        if(session != null) return DashboardLayout(child: child!);
+       
 
         /* if ( authProvider.authStatus == AuthStatus.cheking){
           return const Center(
