@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class PersonalSource extends DataTableSource {
-  int index = 1;
   @override
   DataRow getRow(int index) {
     return DataRow.byIndex(
