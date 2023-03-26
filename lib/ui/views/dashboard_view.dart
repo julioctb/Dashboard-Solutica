@@ -14,7 +14,7 @@ class DashboardView extends StatelessWidget {
     return ListView(
       physics: const ClampingScrollPhysics(),
       children: [
-        Text( 'Dasboard' , 
+        Text( 'Dashboard' , 
           style: CustomLabels.h1,),
         const SizedBox(height: 10),
          

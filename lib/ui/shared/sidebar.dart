@@ -33,14 +33,18 @@ class SideBar extends StatelessWidget {
           MenuItem(
               text: 'Dashboard',
               icon: Icons.dashboard_outlined,
-              onPressed: () =>
-                  NavigationService.navigateTo(Flurorouter.dashboardRoute),
+              onPressed: () => navigateTo(Flurorouter.dashboardRoute),
               isActive:
-                  sideMenuProvider.currentPage == Flurorouter.dashboardRoute),
+                  sideMenuProvider.currentPage == Flurorouter.dashboardRoute,
+                  ),
           const SizedBox(height: 30),
           const TextSeparator(text: 'Recursos Humanos'),
           MenuItem(
-              text: 'Personal', icon: Icons.groups_outlined, onPressed: () {}),
+            text: 'Personal',
+            icon: Icons.groups_outlined,
+            onPressed: () => navigateTo(Flurorouter.personalRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.personalRoute,
+          ),
           MenuItem(
               text: 'Incidencias',
               icon: Icons.personal_injury_outlined,
@@ -85,8 +89,9 @@ class SideBar extends StatelessWidget {
               text: 'Cerrar sesión',
               icon: Icons.exit_to_app_outlined,
               onPressed: () {
-                prov.Provider.of<AuthProvider>(context, listen: false ).logout()
-                .catchError((_)=> false);
+                prov.Provider.of<AuthProvider>(context, listen: false)
+                    .logout()
+                    .catchError((_) => false);
               }),
         ],
       ),
