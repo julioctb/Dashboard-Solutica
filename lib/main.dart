@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart' as prov;
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'providers/providers.dart';
 
@@ -14,16 +13,14 @@ import 'services/notification_service.dart';
 import 'package:solutica/services/auth_service.dart';
 import 'package:solutica/services/local_storage.dart' as storage;
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await storage.LocalStorage.configurePrefs();
 
   await AuthService.initializer();
-  
+
   Flurorouter.configureRoutes();
   runApp(const AppState());
-
 }
 
 class AppState extends StatelessWidget {
@@ -31,14 +28,14 @@ class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  prov.MultiProvider(
-      providers:  [
-          prov.ChangeNotifierProvider( create: (_) => AuthProvider(),lazy: false),
-          prov.ChangeNotifierProvider( create: (_) => SideMenuProvider(),lazy: false),
-            
-          ],
-          child: const MyApp(),
-      );
+    return prov.MultiProvider(
+      providers: [
+        prov.ChangeNotifierProvider(create: (_) => AuthProvider(), lazy: false),
+        prov.ChangeNotifierProvider(
+            create: (_) => SideMenuProvider(), lazy: false),
+      ],
+      child: const MyApp(),
+    );
   }
 }
 
@@ -50,19 +47,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Panel de control - Solutica',
       debugShowCheckedModeBanner: false,
-      scaffoldMessengerKey: NotificationService.notificationKey ,
+      scaffoldMessengerKey: NotificationService.notificationKey,
       navigatorKey: NavigationService.navigatorKey,
       initialRoute: Flurorouter.rootRoute,
       onGenerateRoute: Flurorouter.router.generator,
-      builder: ( _ , child){
-
+      builder: (_, child) {
         final authProvider = prov.Provider.of<AuthProvider>(context);
-
-        
-       
-
-
-       
 
         /* if ( authProvider.authStatus == AuthStatus.cheking){
           return const Center(
@@ -70,16 +60,12 @@ class MyApp extends StatelessWidget {
           );
         } */
 
-        if ( authProvider.authStatus == AuthStatus.notauthenticated ){
-          return  LoginLayout(child: child!);
+        if (authProvider.authStatus == AuthStatus.notauthenticated) {
+          return LoginLayout(child: child!);
         } else {
           return DashboardLayout(child: child!);
         }
-
-
       },
-
-      
     );
   }
 }

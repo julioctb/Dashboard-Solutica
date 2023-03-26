@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:solutica/ui/chips/chip_status.dart';
+import 'package:solutica/ui/buttons/custom_row_icon_btn.dart';
+
 class PersonalSource extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow.byIndex(
     index: index , 
+    color: index % 2 == 0
+          ? MaterialStateColor.resolveWith((states) => Colors.grey.shade100)
+          : null,
     cells:  [
       DataCell(Text(index.toString())),
       DataCell(Row(children: const [
@@ -13,12 +19,14 @@ class PersonalSource extends DataTableSource {
         Text('Nombre Persona')],)),
       const DataCell(Text('Jardinería')),
       const DataCell(Text('Area Asignada')),
-      DataCell(OutlinedButton(onPressed: (){}, child: Text('activo'))),
+      const DataCell(  ChipStatus(jobStatus: 'Activo',)),
       DataCell(Row(
         children: [
-          CustomRowIconButton(icon: Icons.edit,onTap: ()=> print('editar personal')),
+          CustomRowIconButton(icon: Icons.remove_red_eye_outlined,onTap: ()=> print('vista rapida')),
           const SizedBox(width: 5,),
           CustomRowIconButton(icon: Icons.change_circle_outlined,onTap: ()=> print('cambio de personal'),),
+          const SizedBox(width: 5,),
+          CustomRowIconButton(icon: Icons.edit,onTap: ()=> print('editar personal')),
         ],
       )),
       
@@ -36,26 +44,5 @@ class PersonalSource extends DataTableSource {
   int get selectedRowCount => 0;
 }
 
-class CustomRowIconButton extends StatelessWidget {
-  const CustomRowIconButton({super.key, required this.icon, required this.onTap});
-  final IconData  icon;
-  final Function() onTap;
-  
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-      width: 35,
-      height: 35,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8), 
-        color: Colors.blue.withOpacity(0.08)),
-        child: Icon(icon, color: Colors.blue.shade900, size: 20,),
-        
-          ),
-    );
-    
-  }
-}
+// ignore: must_be_immutable
