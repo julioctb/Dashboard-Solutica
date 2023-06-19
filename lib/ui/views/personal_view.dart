@@ -18,6 +18,7 @@ class _PersonalViewState extends State<PersonalView> {
   Widget build(BuildContext context) {
     return ListView(children: [
       PaginatedDataTable(
+      
         header: Text(
           'Listado de Personal',
           style: CustomLabels.h1,
@@ -38,9 +39,8 @@ class _PersonalViewState extends State<PersonalView> {
         onRowsPerPageChanged: (value) =>
             setState(() => _rowsPerPage = value ?? 20),
         columns: const [
-          DataColumn(label: Expanded(child: Center(child: Text('##')))),
-          DataColumn(
-              label: Expanded(child: Center(child: Text('Nombre Completo')))),
+          DataColumn(label: Text('##') ),
+          DataColumn(label: Expanded(child: Center(child: Text('Nombre Completo')))),
           DataColumn(label: Expanded(child: Center(child: Text('Perfil')))),
           DataColumn(label: Expanded(child: Center(child: Text('Área')))),
           DataColumn(label: Expanded(child: Center(child: Text('Estatus')))),
